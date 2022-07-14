@@ -17,11 +17,11 @@ const getMinChars = (desc) => {
 
     let secondDate = to.slice(-2) === "BC" ? 754 - parseInt(to.slice(0, -2)) : to.slice(-2) === "AD" ? parseInt(to.slice(0, -2)) + 753 : 0;
 
-    let countTotal = [];
-
     const firstNumb = firstDate.toString().split("")
 
     const secondNumb = secondDate.toString().split("")
+
+    let countTotal = 0;
 
     for (let j = 0; j < secondNumb.length; j++) {
 
@@ -29,13 +29,13 @@ const getMinChars = (desc) => {
 
         for (let i = firstNumb[j] || 0; i <= secondNumb[j]; i++) count1.push(getCharsDigit(i)); // se calculan los caracteres en un rago determinado
 
-        countTotal.push(count1.sort()[count1.length - 1]); // Se guarda el valor máximo de cada digito
+        countTotal += count1.sort()[count1.length - 1]; // Se guarda el valor máximo de cada digito
     }
 
-    return countTotal.reduce((accum, current) => accum + current) // Retorna la cantidad de caracteres necesarios para guardar la fecha
+    return countTotal // Retorna la cantidad de caracteres necesarios para guardar la fecha
 
 }
 
-console.log(getMinChars("753BC-2012AD"));    // 11
+console.log(getMinChars("1BC-1AD"));    // 7
 console.log(getMinChars("753BC-747BC"));     //  3
 console.log(getMinChars("2000AD-2012AD"));   // 10
