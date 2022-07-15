@@ -80,18 +80,20 @@ const getDirection = (rows, columns) => {
             .reduce((accum, current) => accum + current)
     }
 
-    return directionsArr[directionsArr.indexOf(direction) - 1]; // Regresa la dirección final
+    if (direction === "R") return "U" 
+
+    else return directionsArr[directionsArr.indexOf(direction) - 1];
 }
 
 const runTestCases = () => { // función para pedir los datos utilizando prompt
     let casesArr = [];
 
-    let nCases = prompt("Number of test cases (1 to 50000): ");
+    let nCases = prompt("Number of test cases (1 to 5000): ");
 
     if (nCases < 1 || nCases > 5000) return console.log("Error") // retorna un error si el numero de casos no se encuentra entre 1 y 5000
 
     for (let k = 0; k < nCases; k++) {
-        let mxn = prompt("Introduce the rows and columns. Ex: 3 3")
+        let mxn = prompt("Enter the rows and columns. Ex: 3 3")
 
         if (parseInt(mxn.split(" ")[0]) > 10 ** 9 || parseInt(mxn.split(" ")[0]) < 1 || parseInt(mxn.split(" ")[1]) > 10 ** 9 || parseInt(mxn.split(" ")[1]) < 1) return console.log("Error");
 
